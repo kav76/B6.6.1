@@ -1,0 +1,20 @@
+---
+# tasks file for vsftp
+- name: run apt-get update
+  apt:
+    update_cache: yes
+- name: install vsftpd package
+  apt:
+    name: vsftpd
+    state: present
+- name: upload vsftpd.conf file to ftp server
+  copy:
+    src: "{{ vsftp_role_dir + files_dir + conf_file_path }}"
+    dest: /etc/vsftpd.conf
+    owner: root
+    group: root
+    mode: 0644
+- name: restart vsftpb service
+  service:
+    name: vsftpd
+    state: restarted

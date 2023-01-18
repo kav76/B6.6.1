@@ -1,0 +1,10 @@
+---
+- hosts: test
+  gather_facts: no
+  become: yes
+  vars:
+    vsftp_role_dir: "/etc/ansible/roles/vsftp"
+    files_dir: "/files"
+    conf_file_path: "/vsftpd.conf"
+  roles:
+    - vsftp
